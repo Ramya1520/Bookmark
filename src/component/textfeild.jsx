@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState} from "react";
 import {
   Layout,
   Page,
@@ -6,24 +6,35 @@ import {
   Button,
   FormLayout,
   TextField,
+  DataTable
 } from "@shopify/polaris";
 
 function BookmarkFrom() {
+
   const [url, setUrl] = useState('');
   const [topic, setTopic] = useState('');
   const [notes, setNotes] = useState('');
+  const [list, setList] =useState([]);
 
-  const handleChange = useCallback((newValue) => setUrl(newValue), []);
-  const handleChange1 = useCallback((newValue) => setTopic(newValue), []);
-  const handleChange2 = useCallback((newValue) => setNotes(newValue), []);
+  const handleChange = (newValue) => setUrl(newValue);
+  const handleChange1 = (newValue) => setTopic(newValue);
+  const handleChange2 =(newValue) => setNotes(newValue);
+
+
   var details={}
-  details.url=url
-  details.topic=topic
-  details.notes=notes
-  function submit(){
-    console.log(details)
+  function Submit(){
+    details=[]
+      details.push(url)
+      details.push(topic)
+      details.push(notes)
+
+    console.log("details:",details)
+    console.log("a===>:",list)
+
+    {setList([...list,details])}
   }
   return (
+
     <Page
       title="Bookmark"
     >
@@ -56,16 +67,29 @@ function BookmarkFrom() {
                     placeholder="Enter your notes here"
                     multiline={4}
                 />
-             
-              <Button primary onClick={submit}>Submit</Button>
+              <Button primary onClick={Submit}>Submit</Button>
+            
           </FormLayout>
         </Card>
+        
       </Layout>
+      <p></p>
+      <DataTable
+          columnContentTypes={[
+            'text',
+            'text',
+            'text'
+          ]}
+          headings={[
+            'url link',
+            'Type',
+            'Notes',
+          ]}
+
+       
+          rows={list}
+        />
     </Page>
   )
-  console.log("Details:",details)
-}
-
-
-
+        }
 export default BookmarkFrom
