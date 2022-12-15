@@ -1,9 +1,11 @@
 import React from 'react';
-import Inputfield from './component/bookmark'
+import ButtonGroupExample from './component/bookmark';
+import '@shopify/polaris/build/esm/styles.css';
 
 function App() {
   return (
-    <Inputfield/>
+    <ButtonGroupExample/>
+   
   )
 }
 export default App;
