@@ -1,18 +1,4 @@
-h1 {
-    text-align: center;
-  }
-  div{
-    text-align: center;
-    padding-bottom: 2%;
-  }
-  .url{
-    margin-bottom: 2%;
-
+.layout {
+  margin-bottom: 4%;
   }
  
-  body{
-    background-color:aqua
-  }
- .inputtag{
-  width:2px
- }

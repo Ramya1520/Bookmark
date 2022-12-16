@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+import React, { useState,useCallback} from "react";
+import './bookmark.css';
 import {
   Layout,
   Page,
@@ -10,31 +11,25 @@ import {
 } from "@shopify/polaris";
 
 function BookmarkFrom() {
-
-  const [url, setUrl] = useState('');
-  const [topic, setTopic] = useState('');
-  const [notes, setNotes] = useState('');
-  const [list, setList] =useState([]);
+  const [url, setUrl] = useState();
+  const [topic, setTopic] = useState();
+  const [notes, setNotes] = useState();
+  const [lists, setLists] =useState([]);
 
   const handleChange = (newValue) => setUrl(newValue);
   const handleChange1 = (newValue) => setTopic(newValue);
   const handleChange2 =(newValue) => setNotes(newValue);
 
-
-  var details={}
-  function Submit(){
-    details=[]
+  const Submit= useCallback(() => {
+    
+   var details=[]
       details.push(url)
       details.push(topic)
       details.push(notes)
+      setLists(() => [...lists, details]);
+  }, [notes,url,topic]); 
 
-    console.log("details:",details)
-    console.log("a===>:",list)
-
-    {setList([...list,details])}
-  }
   return (
-
     <Page
       title="Bookmark"
     >
@@ -58,7 +53,9 @@ function BookmarkFrom() {
                     autoComplete="off"
                     placeholder="Enter your topic here"
                 />
+
             </FormLayout.Group>
+
             <TextField
                     label="Notes"
                     value={notes}
@@ -67,13 +64,12 @@ function BookmarkFrom() {
                     placeholder="Enter your notes here"
                     multiline={4}
                 />
-              <Button primary onClick={Submit}>Submit</Button>
-            
+            <Button primary onClick={Submit} >Submit</Button>
           </FormLayout>
         </Card>
-        
       </Layout>
-      <p></p>
+
+      <p className="layout"></p>
       <DataTable
           columnContentTypes={[
             'text',
@@ -85,11 +81,10 @@ function BookmarkFrom() {
             'Type',
             'Notes',
           ]}
-
-       
-          rows={list}
+          rows={lists}          
         />
     </Page>
   )
         }
+   
 export default BookmarkFrom
