@@ -21,13 +21,13 @@ function BookmarkFrom() {
   const handleChange2 =(newValue) => setNotes(newValue);
 
   const Submit= useCallback(() => {
-    
    var details=[]
       details.push(url)
       details.push(topic)
       details.push(notes)
+   if(details.url=url,details.topic=topic,details.notes=notes){
       setLists(() => [...lists, details]);
-  }, [notes,url,topic]); 
+  }}, [notes,url,topic]); 
 
   return (
     <Page
