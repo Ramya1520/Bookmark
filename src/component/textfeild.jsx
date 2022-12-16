@@ -11,6 +11,7 @@ import {
 } from "@shopify/polaris";
 
 function BookmarkFrom() {
+
   const [url, setUrl] = useState();
   const [topic, setTopic] = useState();
   const [notes, setNotes] = useState();
@@ -21,13 +22,18 @@ function BookmarkFrom() {
   const handleChange2 =(newValue) => setNotes(newValue);
 
   const Submit= useCallback(() => {
+
    var details=[]
       details.push(url)
       details.push(topic)
       details.push(notes)
-   if(details.url=url,details.topic=topic,details.notes=notes){
-      setLists(() => [...lists, details]);
-  }}, [notes,url,topic]); 
+
+   if(url){setLists(() => [...lists, details])}
+   setUrl('')
+   setTopic('')
+   setNotes('')
+   
+  }, [notes,url,topic]); 
 
   return (
     <Page
@@ -45,7 +51,7 @@ function BookmarkFrom() {
                     autoComplete="off"
                     placeholder="paste or type your URL Link here"
                 />
-  
+
                <TextField
                     label="Topic"
                     value={topic}
@@ -65,6 +71,7 @@ function BookmarkFrom() {
                     multiline={4}
                 />
             <Button primary onClick={Submit} >Submit</Button>
+          
           </FormLayout>
         </Card>
       </Layout>
