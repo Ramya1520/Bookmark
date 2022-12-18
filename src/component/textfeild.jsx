@@ -36,15 +36,17 @@ function BookmarkFrom() {
   }, [notes,url,topic]); 
 
   return (
-    <Page
+    
+    <Page 
       title="Bookmark"
     >
       <Layout>
-        <Card sectioned>
+        <Card sectioned  >
           <FormLayout>
             <FormLayout.Group>
           
-                <TextField
+
+                <TextField className='.Polaris-TextField__Input'
                     label="URL Link"
                     value={url}
                     onChange={handleChange}
@@ -77,20 +79,22 @@ function BookmarkFrom() {
       </Layout>
 
       <p className="layout"></p>
-      <DataTable
+      <DataTable  className="e"
           columnContentTypes={[
             'text',
             'text',
             'text'
           ]}
-          headings={[
-            'url link',
+          headings ={[
+           
+            'URL Link',
             'Type',
             'Notes',
           ]}
           rows={lists}          
         />
     </Page>
+    
   )
         }
    
