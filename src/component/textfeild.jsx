@@ -20,13 +20,14 @@ function BookmarkFrom() {
       notes:""
     })
     const [list, setList] = useState([{url:'',notes:'',value:''}])
-    
-    const Submit = () => {
-        if (listVal.url && listVal.topic && listVal.notes) { setList([...list, listVal]) }
-        console.log("list=================>:", list)
-    }
-
    
+    const Submit= () => {
+      console.log("hai")
+      if (listVal.url)
+            { setList([...list, listVal]) } 
+            setListVal('')
+          }
+     
     return (
         <Page
         title="Bookmark"
@@ -65,12 +66,36 @@ function BookmarkFrom() {
                       multiline={4}
                   />
               <Button primary onClick={Submit} >Submit</Button>
-  
+
             </FormLayout>
           </Card>
         </Layout>
         <p className="layout"></p>
+         <table className="mytable">
+          <th>URL Link</th>
+          <th>Topic</th>
+          <th>Notes</th>
+        {  
+      list.map((obj) => {
+        console.log(obj.url)
+        return(
+          <tr>
+          <td>{obj.url}</td>
+          <td>{obj.topic}</td>
+          <td>{obj.notes}</td>
+          </tr>
+        )
+      
+      }
+      
+    )
+     }
+       
+       
+       </table> 
+       <p>hai</p>
       </Page> 
+      
     )   
 }
 
